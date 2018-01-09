@@ -92,16 +92,13 @@ public class DFS {
 
     }
 
-
     public void DFSearch() {
         boolean findSolution = false;
         //Node tempNode = new Node();
         currentState = nodeStack.pop();
         moveAction(currentState);
         while (!findSolution) {
-            try {
-
-                //System.out.println(moveCounter);
+            try {               
                 currentState = nodeStack.pop();
                 moveCounter++;
                 System.out.println("---------------------------\n" + currentState.showState() + "----------------------------\n");
@@ -122,7 +119,6 @@ public class DFS {
 
     public void DFSgraph() {
         boolean findSolution = false;
-        //Node tempNode = new Node();
         boolean visited;
         Node tempNode;
         currentState = nodeStack.pop();
@@ -135,9 +131,7 @@ public class DFS {
                 for (int i = 0; i < visit.size(); i++) {
                     tempNode = visit.get(i);
                     if (currentState.showState().equals(tempNode.showState())) {
-                        visited = true;
-                        //System.out.println("保存的与首元素相同的元素：" + tempNode.showState());
-                        //System.out.println("elements in queue:" + elements);
+                        visited = true;                       
                         break;
                     }
                 }
