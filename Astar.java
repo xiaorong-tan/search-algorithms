@@ -81,13 +81,12 @@ public class Astar {
     private int calculateF(Node currentState, int g) {
         int h = manhattanH(currentState);
         int f;
-        f = g + h;
-        //System.out.println("Value of F:" + f);
+        f = g + h;        
         return f;
     }
 
     private int calculateG(Node newState, Node currentState) {
-        //newState.setG(currentState.getG()+1);
+        
         if (newState.getX(1) != currentState.getX(1) || newState.getY(1) != currentState.getY(1)) {
             newState.setG(currentState.getG() + 1);
         }
@@ -96,20 +95,16 @@ public class Astar {
         }
         if (newState.getX(3) != currentState.getX(3) || newState.getY(3) != currentState.getY(3)) {
             newState.setG(currentState.getG() + 1);
-        }
-        //System.out.println("Value of G:" + newState.getG());
+        }       
         return newState.getG();
 
     }
-
 
     public void AStarSearch() {
         int minFValueIndex;
         boolean findSolution = false;
         startState.setG(0);
         moveAction(startState);
-
-
         while (!findSolution) {
             try {
                 for (int i = 0; i < stateValue.size(); i++) {
@@ -123,9 +118,7 @@ public class Astar {
                 }
                 if (minListValue.size() > 1) {
                     openList.clear();
-                    stateValue.clear();
-                    //Collections.reverse(openList);
-                    //System.out.println("取随机最小元素");
+                    stateValue.clear();                    
                     stateValue.add(minListValue.get(minListValue.size() - 1));
                     Collections.shuffle(minListState);
                     openList.add(minListState.get(0));
@@ -139,8 +132,7 @@ public class Astar {
                 openList.remove(minFValueIndex);
                 System.out.println("Minimum F:" + Fvalue);
                 System.out.println("Current State:" + "\n" + currentState.showState());
-                moveCounter++;
-                //System.out.println(moveCounter);
+                moveCounter++;               
                 if (currentState.getX(1) == goalState.getX(1) && currentState.getY(1) == goalState.getY(1) && currentState.getX(2) == goalState.getX(2) && currentState.getY(2) == goalState.getY(2) && currentState.getX(3) == goalState.getX(3) && currentState.getY(3) == goalState.getY(3)) {
                     findSolution = true;
                     System.out.println("Reached goal state!\n" + currentState.showState());
@@ -153,7 +145,6 @@ public class Astar {
                 break;
             }
         }
-
         System.out.println("Current State:" + "\n" + currentState.showState());
         System.out.println("Total steps: " + moveCounter);
         System.out.println("Value of F:" + Fvalue);
