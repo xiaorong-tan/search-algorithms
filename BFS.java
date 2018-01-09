@@ -39,43 +39,30 @@ public class BFS {
             queue.offer(newState);
             elements++;
             nodes ++;
-
-            //System.out.println(newState.showState());
-            //System.out.println(newState.getX(4) + "" + newState.getY(4));
         }
 
         newState = b.moveUp(currentState);
         if (newState != null) {
             queue.offer(newState);
             elements++;
-            nodes ++;
-            //System.out.println(newState.showState());
-            //System.out.println(newState.getX(4) + "" + newState.getY(4));
+            nodes ++;           
         }
 
         newState = b.moveRight(currentState);
         if (newState != null) {
             queue.offer(newState);
             elements++;
-            nodes ++;
-            //System.out.println(newStateRight.showState());
-            //System.out.println(newState.getX(4) + "" + newState.getY(4));
+            nodes ++;           
         }
     }
-
-
-
-
+    
     public void BFSearch() {
         boolean findSolution = false;
         currentState = queue.poll();
         moveAction(currentState);
-
         while (!findSolution) {
             try {
-                moveCounter++;
-                //System.out.println("steps:" + moveCounter);
-                //System.out.println("elements in queue:" + elements);
+                moveCounter++;               
                 currentState = queue.poll();
                 System.out.println("---------------------------\n" + currentState.showState() + "----------------------------\n");
                 elements--;
@@ -106,24 +93,17 @@ public class BFS {
         while (!findSolution) {
             try {
                 visited = false;
-                currentState = queue.remove();
-                //System.out.println("从队列中取出首元素：" + currentState.showState());
+                currentState = queue.remove();                
                 elements--;
-                //visit.add(currentState);
-                //System.out.println("elements in queue:" + elements);
-
                 for (int i = 0; i < visit.size(); i++) {
                     tempNode = visit.get(i);
                     if (currentState.showState().equals(tempNode.showState())) {
-                        visited = true;
-                        //System.out.println("保存的与首元素相同的元素：" + tempNode.showState());
-                        //System.out.println("elements in queue:" + elements);
+                        visited = true;                        
                         break;
                     }
                 }
                 if (!visited) {
-                    moveCounter++;
-                    //System.out.println("steps:" + moveCounter);
+                    moveCounter++;                    
                     System.out.println("---------------------------\n" + currentState.showState() + "----------------------------\n");
                     if (currentState.getX(1) == goalState.getX(1) && currentState.getY(1) == goalState.getY(1) && currentState.getX(2) == goalState.getX(2) && currentState.getY(2) == goalState.getY(2) && currentState.getX(3) == goalState.getX(3) && currentState.getY(3) == goalState.getY(3)) {
                         findSolution = true;
@@ -131,8 +111,7 @@ public class BFS {
                         break;
                     } else {
                         moveAction(currentState);
-                        visit.add(currentState);
-                        //System.out.println("elements in queue:" + elements);
+                        visit.add(currentState);                        
                     }
                 }
 
